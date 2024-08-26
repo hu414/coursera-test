@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hello Goodbye</title>
+</head>
+<body>
+  <script>
+    // greeting.js
+    function greet(name) {
+      if (name[0].toLowerCase() === 'j') {
+        return `Goodbye ${name}`;
+      } else {
+        return `Hello ${name}`;
+      }
+    }
+
+    // printer.js
+    function printMessage(message) {
+      console.log(message);
+    }
+
+    // Main Code
+    const names = ['John', 'Jane', 'Bob', 'Alice'];
+
+    names.forEach(name => {
+      const message = greet(name);
+      printMessage(message);
+    });
+  </script>
+</body>
+</html>
