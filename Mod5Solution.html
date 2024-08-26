@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Restaurant Web App</title>
+  <style>
+    /* Add some basic styling to make the tiles look nice */
+    .tile {
+      display: inline-block;
+      width: 200px;
+      height: 100px;
+      background-color: #f0f0f0;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Restaurant Web App</h1>
+  <div class="tile" id="menu-tile">
+    <a href="#" onclick="$dc.loadMenuItems('MENU');">Menu</a>
+  </div>
+  <div class="tile" id="specials-tile">
+    <!-- Modified Specials tile to load a random category -->
+    <a href="#" id="specials-link">Specials</a>
+  </div>
+  <div class="tile" id="map-tile">
+    <a href="#" onclick="$dc.loadMap();">Map</a>
+  </div>
+
+  <script>
+    // Get the list of category short_names from the server
+    $dc.getCategories().then(categories => {
+      // Get an array of category short_names
+      const categoryShortNames = categories.map(category => category.short_name);
+      
+      // Select a random category short_name
+      const randomCategoryShortName = categoryShortNames[Math.floor(Math.random() * categoryShortNames.length)];
+      
+      // Insert the random category short_name into the Specials tile
+      document.querySelector('#specials-link').onclick = function() {
+        $dc.loadMenuItems(randomCategoryShortName);
+      };
+    });
+  </script>
+</body>
+</html>
